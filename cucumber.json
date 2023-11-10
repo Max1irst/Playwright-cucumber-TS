@@ -15,6 +15,9 @@
         ],
         "requireModule": [
             "ts-node/register"
+        ],
+        "format": [
+            "html:./reports/cucumber-report.html"
         ]
     }
 }
