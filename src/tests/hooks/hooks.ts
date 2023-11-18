@@ -1,13 +1,14 @@
 import { BeforeAll, AfterAll, setDefaultTimeout, Before, After, Status, AfterStep } from "@cucumber/cucumber";
 import { chromium, Browser, Page, BrowserContext } from "@playwright/test";
 import { pageFixture } from "./pageFixture";
+import { config } from "../../../playwright.config";
 
 let browser: Browser
 let context: BrowserContext
 setDefaultTimeout(60 * 2000)
 
 BeforeAll(async function () {
-    browser = await chromium.launch({ headless: false })
+    browser = await chromium.launch(config)
 })
 
 Before(async function () {
@@ -29,5 +30,5 @@ After(async function () {
 })
 
 AfterAll(async function () {
-    await browser.close()
+    // await browser.close()
 })
