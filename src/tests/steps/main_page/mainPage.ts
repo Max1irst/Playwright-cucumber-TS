@@ -1,7 +1,7 @@
-import { Given, When, Then } from '@cucumber/cucumber'
-import { expect } from '@playwright/test'
-import { pageFixture } from '../../hooks/pageFixture';
-import { mainPageLocators } from '../../locators/mainPage';
+import {Given, When, Then} from '@cucumber/cucumber'
+import {expect} from '@playwright/test'
+import {pageFixture} from '../../hooks/pageFixture';
+import {mainPageLocators} from '../../locators/mainPage';
 
 
 Given(/^User checks that main elements visible on main page$/, async function () {
@@ -18,8 +18,8 @@ Given(/^User checks that main elements visible on main page$/, async function ()
 });
 
 Then(/^User checks that the navbar links work correctly on main page$/, async function () {
-    const linkscount = await pageFixture.page.locator('.nav ul li').count()
-    for (let i = 0; i < linkscount; i++) {
+    const linksCount = await pageFixture.page.locator('.nav ul li').count()
+    for (let i = 0; i < linksCount; i++) {
         let linkName = await pageFixture.page.locator('.nav ul li').nth(i).textContent()
         await pageFixture.page.locator('.nav ul li').nth(i).click()
         let pageTitle = await pageFixture.page.locator('.title-block h1').textContent()

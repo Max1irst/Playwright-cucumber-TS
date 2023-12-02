@@ -1,0 +1,14 @@
+Feature: Functional Tests for Main page
+
+  Background: Open main page
+    Given User navigates to 'sweet shop app'
+
+  Scenario: Check is user able to add to and delete product from cart
+    Given User get quantity of items in cart from counter above cart icon in navbar
+    When User add product 'Jacks Milk Chocolate 87g' to cart
+    And Get success toast message that 'Jacks Milk Chocolate 87g added to cart'
+    And User add product 'Jacks Milk Chocolate 87g' to cart
+    And Get info toast message that 'Increased Jacks Milk Chocolate 87g cart quantity'
+    And User add product 'Vimto Lollipop' to cart
+    And Get success toast message that 'Vimto Lollipop added to cart'
+    Then Cart items counter increased for 3
