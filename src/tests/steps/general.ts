@@ -37,3 +37,7 @@ Then(/^Get (.*) toast message that '(.*)'$/, async function (messageType:string,
             break;
     }
 })
+
+Given(/^User open '(.*)' page$/, async function (page:string){
+        await pageFixture.page.locator(`a[href="#/${page}"]`).click()
+})
