@@ -13,3 +13,5 @@ Feature: Functional Tests for Shop all sweets page
     And User add product 'Vimto Lollipop' to cart
     And Get success toast message that 'Vimto Lollipop added to cart'
     Then Cart items counter increased for 3
+    When User open 'cart' page
+    Then Cart items in cart should be 2 and total sum equal '39'

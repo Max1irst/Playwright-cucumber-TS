@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test"
+    "test": "cucumber-js --config=cucumber.json",
+    "@debug_mode": "npm run test -- --tags @debug_mode || true"
   },
   "keywords": [],
   "author": "",
