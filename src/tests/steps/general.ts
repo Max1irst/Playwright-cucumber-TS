@@ -1,7 +1,6 @@
 import {Given, When, Then} from '@cucumber/cucumber'
 import {expect} from '@playwright/test'
 import {pageFixture} from '../hooks/pageFixture';
-import {log} from "util";
 import {commonLocators} from "../locators/common";
 
 
@@ -37,6 +36,10 @@ Then(/^Get (.*) toast message that '(.*)'$/, async function (messageType: string
             await pageFixture.page.locator(`.Toastify__toast--info:has-text("${messageText}")`).waitFor({state: "visible"})
             await pageFixture.page.locator(`.Toastify__toast--info:has-text("${messageText}")`).waitFor({state: "hidden"})
             break;
+        case 'error':
+            await pageFixture.page.locator(`.Toastify__toast--error:has-text("${messageText}")`).waitFor({state: "visible"})
+            await pageFixture.page.locator(`.Toastify__toast--error:has-text("${messageText}")`).waitFor({state: "hidden"})
+            break;
     }
 })
 
@@ -66,4 +69,8 @@ Then(/^User checks that the navbar links work correctly and main content visible
         await expect(pageFixture.page.locator(commonLocators.footer)).toBeVisible()
         expect(await pageFixture.page.locator(commonLocators.freeDeliveryBanner).count()).toBeGreaterThanOrEqual(1)
     }
+})
+
+Then(/^User see that url is '(.*)'$/, async function (urlName: string) {
+    expect(pageFixture.page.url()).toBe(urlName)
 })
