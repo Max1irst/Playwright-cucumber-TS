@@ -2,6 +2,7 @@ import {Given, When, Then} from '@cucumber/cucumber'
 import {expect} from '@playwright/test'
 import {pageFixture} from '../hooks/pageFixture';
 import {log} from "util";
+import {commonLocators} from "../locators/common";
 
 
 Then(/^User navigates to '(.*)'$/, async function (page: string) {
@@ -45,5 +46,24 @@ Given(/^User open '(.*)' page$/, async function (page: string) {
 
 When(/^Cart items in cart should be (.*) and total sum equal '(.*)'$/, async function (totalCartItems: string, totalCartSum: string) {
     expect(await pageFixture.page.locator('.cartItem').count()).toBe(Number(totalCartItems))
-    await pageFixture.page.locator('.sub-total').textContent().then((el:any) => expect(el.split(' ')[1].toString()).toBe(totalCartSum))
+    await pageFixture.page.locator('.sub-total').textContent().then((el: any) => expect(el.split(' ')[1].toString()).toBe(totalCartSum))
 });
+
+Then(/^User see that title block has text '(.*)'$/, async function (titleText: string) {
+    await expect(pageFixture.page.locator('.title-block h1')).toHaveText(titleText)
+})
+
+Then(/^User checks that the navbar links work correctly and main content visible on all pages$/, async function () {
+    const linksCount = await pageFixture.page.locator('.nav ul li').count()
+    for (let i = 0; i < linksCount; i++) {
+        let linkName = await pageFixture.page.locator('.nav ul li').nth(i).textContent()
+        await pageFixture.page.locator('.nav ul li').nth(i).click()
+        let pageTitle = await pageFixture.page.locator('.title-block h1').textContent()
+        expect(linkName).toBe(pageTitle)
+        await expect(pageFixture.page.locator(commonLocators.redInfo)).toBeVisible()
+        await expect(pageFixture.page.locator(commonLocators.sortProducts)).toBeVisible()
+        await expect(pageFixture.page.locator(commonLocators.reviews)).toBeVisible()
+        await expect(pageFixture.page.locator(commonLocators.footer)).toBeVisible()
+        expect(await pageFixture.page.locator(commonLocators.freeDeliveryBanner).count()).toBeGreaterThanOrEqual(1)
+    }
+})

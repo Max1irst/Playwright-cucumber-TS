@@ -3,7 +3,6 @@ Feature: Functional Tests for Main page
   Background: Open main page
     Given User navigates to 'sweet shop app'
 
-  @debug_mode
   Scenario: Check is user able to add to and delete product from cart
     Given User get quantity of items in cart from counter above cart icon in navbar
     When User add product 'Milk Tops 100g' to cart

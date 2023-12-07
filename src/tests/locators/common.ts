@@ -1,4 +1,6 @@
-export const mainPageLocators = {
+export const commonLocators = {
+    redInfo: '.red-info',
+    sortProducts: '.sorting #orderby',
     searchField: '.header .search input',
     logo: '.active img[alt="logo"]',
     menu: 'div.menu',
