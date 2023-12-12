@@ -1,5 +1,6 @@
 Feature: Smoke tests
 
+  @smoke_test
   Scenario: Check is content visible on main page
     Given User navigates to 'sweet shop app'
     And User checks that main elements visible on main page

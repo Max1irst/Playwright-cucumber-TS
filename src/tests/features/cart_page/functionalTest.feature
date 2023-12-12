@@ -3,6 +3,7 @@ Feature: Functional Tests for Cart page
   Background: Open main page
     Given User navigates to 'sweet shop app'
 
+  @functional
   Scenario: : Add products to cart and check cart functional
     Then User add product 'Milk Tops 100g' to cart
     And Get success toast message that 'Milk Tops 100g added to cart'

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js --config=cucumber.json",
-    "@run": "npm run test -- --tags @run || true"
+    "functional": "npm run test -- --tags @functional || true",
+    "smoke_test": "npm run test -- --tags @smoke_test || true"
   },
   "keywords": [],
   "author": "",
